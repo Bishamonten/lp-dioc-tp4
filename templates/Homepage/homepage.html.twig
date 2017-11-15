@@ -14,7 +14,7 @@
      #}
     <ul>
         {% for user in users %}
-            <li>{{ user.username }}</li>
+            <li><a href="/profile/{{ user.id }}"> {{ user.firstname }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
