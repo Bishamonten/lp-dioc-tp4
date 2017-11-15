@@ -20,11 +20,18 @@ class AdminController extends Controller
     public function dashboardAction()
     {
         // FIXME: Récupérer les utilisateurs non admin
-        $users = [];
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository(User::class)->findBy(array("isAdmin" => false));
 
         return $this->render('Admin/dashboard.html.twig', ['users' => $users]);
     }
 
+    /**
+     * @Route(
+     *     path="/delete-user/{id}",
+     *     name="admin_delete"
+     * )
+     */
     public function deleteUserAction(User $user)
     {
         // FIXME: Supprime l'utilisateur est redirige sur /admin, la route doit être /delete-user/1
